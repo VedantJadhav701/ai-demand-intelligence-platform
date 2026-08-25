@@ -1,4 +1,4 @@
-artifact_uri: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts/f7960c004117414d895c8d478d0a715c/artifacts
+artifact_uri: file:./mlartifacts/f7960c004117414d895c8d478d0a715c/artifacts
 end_time: 1787425525917
 entry_point_name: ''
 experiment_id: '783300057967261240'

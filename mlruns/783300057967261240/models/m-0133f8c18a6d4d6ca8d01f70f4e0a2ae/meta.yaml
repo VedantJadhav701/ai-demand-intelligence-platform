@@ -1,4 +1,4 @@
-artifact_location: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts/models/m-0133f8c18a6d4d6ca8d01f70f4e0a2ae/artifacts
+artifact_location: file:./mlartifacts/models/m-0133f8c18a6d4d6ca8d01f70f4e0a2ae/artifacts
 creation_timestamp: 1787425512151
 experiment_id: '783300057967261240'
 last_updated_timestamp: 1787425524439

@@ -1,4 +1,4 @@
-artifact_location: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts
+artifact_location: file:./mlartifacts
 creation_time: 1787425457395
 effective_trace_archival_retention: null
 experiment_id: '783300057967261240'

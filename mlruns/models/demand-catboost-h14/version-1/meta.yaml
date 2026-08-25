@@ -10,7 +10,7 @@ run_link: null
 source: models:/m-162d65a4970f4b38920fcea4a191fc0c
 status: READY
 status_message: null
-storage_location: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts/models/m-162d65a4970f4b38920fcea4a191fc0c/artifacts
+storage_location: file:./mlartifacts/models/m-162d65a4970f4b38920fcea4a191fc0c/artifacts
 user_id: null
 version: 1
 workspace: default
