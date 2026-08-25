@@ -21,161 +21,172 @@ export default function MeridianLandingPage() {
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-[#0a0a0a] font-sans relative overflow-x-hidden selection:bg-[#006cd2] selection:text-white">
-      {/* BACKGROUND VIDEO */}
-      <div className="fixed inset-0 z-0 bg-white pointer-events-none overflow-hidden">
-        <video
-          className="absolute inset-0 w-full h-full object-cover opacity-90"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260808_075824_7c8a2ef3-826c-43ca-81a1-162429faa306.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </div>
-
-      {/* PAGE SHELL */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-between p-4 sm:p-8 lg:p-12">
-        {/* 1. NAVBAR */}
-        <header className="grid grid-cols-[1fr_auto_1fr] items-center w-full max-w-[1440px] mx-auto select-none">
-          {/* Left Glass Pill Links */}
-          <nav className="hidden lg:flex items-center gap-[clamp(16px,2vw,32px)] px-6 py-4 bg-[rgba(0,0,0,0.13)] backdrop-blur-[18px] border-0 justify-self-start">
-            {[
-              { label: "Product", href: "#product" },
-              { label: "How It Works", href: "#how-it-works" },
-              { label: "Explainability", href: "#explainability" },
-              { label: "Performance", href: "#performance" },
-              { label: "AI Analyst", href: "#ai-analyst" },
-            ].map((link, idx) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-xs sm:text-sm font-medium text-[#0a0a0a] tracking-[-0.01em] hover:text-[#006cd2] transition-colors relative py-1"
-                style={{ animation: `link-in 0.55s backwards ${0.02 + idx * 0.06}s` }}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Center 6 Parallelograms SVG Logo */}
-          <Link href="/" className="justify-self-start lg:justify-self-center group" aria-label="Meridian AI Demand Intelligence">
-            <svg
-              className="w-8 sm:w-10 h-auto fill-[#0a0a0a] group-hover:scale-110 transition-transform duration-300"
-              viewBox="0 0 42 34"
-            >
-              <polygon points="12,0 30,0 33.2,3.2 15.2,3.2" style={{ animation: "mark-in 0.5s backwards 0.04s" }} />
-              <polygon points="14.6,5.6 32.6,5.6 35.8,8.8 17.8,8.8" style={{ animation: "mark-in 0.5s backwards 0.09s" }} />
-              <polygon points="17.2,11.2 35.2,11.2 38.4,14.4 20.4,14.4" style={{ animation: "mark-in 0.5s backwards 0.14s" }} />
-              <polygon points="3.2,16.8 21.2,16.8 24.4,20 6.4,20" style={{ animation: "mark-in 0.5s backwards 0.19s" }} />
-              <polygon points="5.8,22.4 23.8,22.4 27,25.6 9,25.6" style={{ animation: "mark-in 0.5s backwards 0.24s" }} />
-              <polygon points="8.4,28 26.4,28 29.6,31.2 11.6,31.2" style={{ animation: "mark-in 0.5s backwards 0.29s" }} />
-            </svg>
-          </Link>
-
-          {/* Right CTA Button */}
-          <div className="justify-self-end flex items-center gap-3">
-            <Link
-              href="/forecast"
-              className="hidden sm:inline-flex items-center h-[54px] px-6 gap-3 bg-[#006cd2] hover:bg-[#0053a3] text-white font-bold text-sm tracking-[-0.015em] transition-colors relative overflow-hidden group shadow-lg"
-              style={{ animation: "wipe-left 0.65s backwards 0.16s" }}
-            >
-              <span className="relative z-10 font-bold">Start Forecasting</span>
-              <div className="w-8 h-8 bg-[#0053a3] group-hover:bg-white flex items-center justify-center relative z-10 transition-colors">
-                <svg className="w-4 h-4 text-white group-hover:text-[#006cd2] transition-colors" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" />
-                </svg>
-              </div>
-            </Link>
-
-            {/* Mobile Burger Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-3 bg-black/10 backdrop-blur-md border-0 text-[#0a0a0a]"
-              aria-label="Open menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </header>
-
-        {/* Mobile Menu Dropdown */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 p-6 bg-black/90 backdrop-blur-xl border border-white/10 text-white space-y-4 flex flex-col z-50">
-            <a href="#product" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">Product</a>
-            <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">How It Works</a>
-            <a href="#explainability" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">Explainability</a>
-            <a href="#performance" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">Performance</a>
-            <a href="#ai-analyst" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">AI Analyst</a>
-            <Link href="/forecast" className="inline-flex items-center justify-center py-3.5 bg-[#006cd2] text-white font-bold text-sm">
-              Start Forecasting
-            </Link>
-          </div>
-        )}
-
-        {/* 2. HERO SECTION */}
-        <main className="mt-8 sm:mt-16 max-w-[1440px] w-full mx-auto">
-          {/* Eyebrow Badge */}
-          <div className="inline-flex items-center gap-2.5 h-[36px] sm:h-[42px] px-3.5 sm:px-4 bg-white/30 border border-[#006cd2]/20 backdrop-blur-[18px] text-[#1a1a1a] text-xs sm:text-sm font-medium tracking-[-0.01em] mb-4 sm:mb-6">
-            <span className="w-3 h-3 sm:w-3.5 sm:h-3.5 border-2 border-[#006cd2] bg-white"></span>
-            AI-POWERED DEMAND INTELLIGENCE
-          </div>
-
-          {/* Headline with Two-Pass Accent Wipe */}
-          <h1 className="text-[clamp(2.1rem,5.5vw,5rem)] font-semibold leading-[1.15] tracking-[-0.038em] max-w-5xl break-words">
-            <span className="block overflow-hidden">
-              <span className="block text-[#0a0a0a]" style={{ animation: "type-rise 0.85s cubic-bezier(0.16,1,0.3,1) backwards 0.26s" }}>
-                Every demand decision
-              </span>
-            </span>
-
-            <span className="block overflow-hidden mt-1">
-              <span className="block" style={{ animation: "type-rise 0.85s cubic-bezier(0.16,1,0.3,1) backwards 0.4s" }}>
-                <span className="text-[#6b7378] font-semibold">starts with a </span>
-                <span className="headline__accent" data-text="better question.">better question.</span>
-              </span>
-            </span>
-          </h1>
-
-          <p className="mt-4 sm:mt-6 text-sm sm:text-lg lg:text-xl text-[#1a1a1a] max-w-3xl leading-relaxed font-normal">
-            <strong>Know What Demand Is Coming Next.</strong> Forecast demand, understand what's driving it, and identify what needs your attention before it becomes a business problem.
-          </p>
-
-          {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6 sm:mt-8">
-            <Link
-              href="/forecast"
-              className="inline-flex items-center justify-center sm:justify-start h-[54px] sm:h-[58px] px-6 sm:px-8 gap-4 bg-[#006cd2] hover:bg-[#0053a3] text-white font-bold text-sm sm:text-base tracking-[-0.015em] transition-colors relative overflow-hidden group shadow-xl w-full sm:w-auto"
-              style={{ animation: "wipe-left 0.7s cubic-bezier(0.16,1,0.3,1) backwards 0.56s" }}
-            >
-              <span className="relative z-10 font-bold">Start Forecasting</span>
-              <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#0053a3] group-hover:bg-white flex items-center justify-center relative z-10 transition-colors">
-                <svg className="w-4 h-4 text-white group-hover:text-[#006cd2] transition-colors" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" />
-                </svg>
-              </div>
-            </Link>
-
-            <Link
-              href="/dashboard"
-              className="inline-flex items-center justify-center h-[54px] sm:h-[58px] px-8 bg-white/75 hover:bg-white text-[#0a0a0a] backdrop-blur-[24px] border border-black/10 font-bold text-sm sm:text-base transition-colors shadow-md w-full sm:w-auto text-center"
-              style={{ animation: "wipe-left 0.7s cubic-bezier(0.16,1,0.3,1) backwards 0.66s" }}
-            >
-              Explore Demo Platform
-            </Link>
-          </div>
-        </main>
-
-        {/* Bottom Lede */}
-        <div className="mt-12 sm:mt-16 max-w-[700px] text-white text-sm sm:text-lg font-light leading-relaxed tracking-[-0.01em] bg-black/60 p-5 sm:p-6 border border-white/10 backdrop-blur-md">
-          <p style={{ animation: "type-rise 0.9s cubic-bezier(0.16,1,0.3,1) backwards 0.78s" }}>
-            Meridian continuously analyzes sales trends, product usage, customer behavior and store commercial data to identify expansion opportunities, predict demand risks, and recommend the highest-impact actions for your team.
-          </p>
+      
+      {/* ========================================================================= */}
+      {/* 1. HERO SECTION WRAPPER (BACKGROUND VIDEO IS SCOPED ONLY TO THIS SECTION) */}
+      {/* ========================================================================= */}
+      <section className="relative min-h-screen flex flex-col justify-between p-4 sm:p-8 lg:p-12 overflow-hidden bg-white">
+        
+        {/* BACKGROUND VIDEO (SCOPED STRICTLY TO HERO) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <video
+            className="absolute inset-0 w-full h-full object-cover opacity-90"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260808_075824_7c8a2ef3-826c-43ca-81a1-162429faa306.mp4"
+              type="video/mp4"
+            />
+          </video>
         </div>
-      </div>
+
+        {/* HERO CONTENT CONTAINER */}
+        <div className="relative z-10 flex-1 flex flex-col justify-between max-w-[1440px] w-full mx-auto">
+          {/* NAVBAR */}
+          <header className="grid grid-cols-[1fr_auto_1fr] items-center w-full select-none">
+            {/* Left Glass Pill Links */}
+            <nav className="hidden lg:flex items-center gap-[clamp(16px,2vw,32px)] px-6 py-4 bg-[rgba(0,0,0,0.13)] backdrop-blur-[18px] border-0 justify-self-start">
+              {[
+                { label: "Product", href: "#product" },
+                { label: "How It Works", href: "#how-it-works" },
+                { label: "Explainability", href: "#explainability" },
+                { label: "Performance", href: "#performance" },
+                { label: "AI Analyst", href: "#ai-analyst" },
+              ].map((link, idx) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-xs sm:text-sm font-medium text-[#0a0a0a] tracking-[-0.01em] hover:text-[#006cd2] transition-colors relative py-1"
+                  style={{ animation: `link-in 0.55s backwards ${0.02 + idx * 0.06}s` }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* Center 6 Parallelograms SVG Logo */}
+            <Link href="/" className="justify-self-start lg:justify-self-center group" aria-label="Meridian AI Demand Intelligence">
+              <svg
+                className="w-8 sm:w-10 h-auto fill-[#0a0a0a] group-hover:scale-110 transition-transform duration-300"
+                viewBox="0 0 42 34"
+              >
+                <polygon points="12,0 30,0 33.2,3.2 15.2,3.2" style={{ animation: "mark-in 0.5s backwards 0.04s" }} />
+                <polygon points="14.6,5.6 32.6,5.6 35.8,8.8 17.8,8.8" style={{ animation: "mark-in 0.5s backwards 0.09s" }} />
+                <polygon points="17.2,11.2 35.2,11.2 38.4,14.4 20.4,14.4" style={{ animation: "mark-in 0.5s backwards 0.14s" }} />
+                <polygon points="3.2,16.8 21.2,16.8 24.4,20 6.4,20" style={{ animation: "mark-in 0.5s backwards 0.19s" }} />
+                <polygon points="5.8,22.4 23.8,22.4 27,25.6 9,25.6" style={{ animation: "mark-in 0.5s backwards 0.24s" }} />
+                <polygon points="8.4,28 26.4,28 29.6,31.2 11.6,31.2" style={{ animation: "mark-in 0.5s backwards 0.29s" }} />
+              </svg>
+            </Link>
+
+            {/* Right CTA Button */}
+            <div className="justify-self-end flex items-center gap-3">
+              <Link
+                href="/forecast"
+                className="hidden sm:inline-flex items-center h-[54px] px-6 gap-3 bg-[#006cd2] hover:bg-[#0053a3] text-white font-bold text-sm tracking-[-0.015em] transition-colors relative overflow-hidden group shadow-lg"
+                style={{ animation: "wipe-left 0.65s backwards 0.16s" }}
+              >
+                <span className="relative z-10 font-bold">Start Forecasting</span>
+                <div className="w-8 h-8 bg-[#0053a3] group-hover:bg-white flex items-center justify-center relative z-10 transition-colors">
+                  <svg className="w-4 h-4 text-white group-hover:text-[#006cd2] transition-colors" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7">
+                    <path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" />
+                  </svg>
+                </div>
+              </Link>
+
+              {/* Mobile Burger Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-3 bg-black/10 backdrop-blur-md border-0 text-[#0a0a0a]"
+                aria-label="Open menu"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </header>
+
+          {/* Mobile Menu Dropdown */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden mt-4 p-6 bg-black/90 backdrop-blur-xl border border-white/10 text-white space-y-4 flex flex-col z-50">
+              <a href="#product" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">Product</a>
+              <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">How It Works</a>
+              <a href="#explainability" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">Explainability</a>
+              <a href="#performance" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">Performance</a>
+              <a href="#ai-analyst" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold">AI Analyst</a>
+              <Link href="/forecast" className="inline-flex items-center justify-center py-3.5 bg-[#006cd2] text-white font-bold text-sm">
+                Start Forecasting
+              </Link>
+            </div>
+          )}
+
+          {/* MAIN HERO CONTENT */}
+          <main className="mt-8 sm:mt-16 w-full">
+            {/* Eyebrow Badge */}
+            <div className="inline-flex items-center gap-2.5 h-[36px] sm:h-[42px] px-3.5 sm:px-4 bg-white/30 border border-[#006cd2]/20 backdrop-blur-[18px] text-[#1a1a1a] text-xs sm:text-sm font-medium tracking-[-0.01em] mb-4 sm:mb-6">
+              <span className="w-3 h-3 sm:w-3.5 sm:h-3.5 border-2 border-[#006cd2] bg-white"></span>
+              AI-POWERED DEMAND INTELLIGENCE
+            </div>
+
+            {/* Headline with Two-Pass Accent Wipe */}
+            <h1 className="text-[clamp(2.1rem,5.5vw,5rem)] font-semibold leading-[1.15] tracking-[-0.038em] max-w-5xl break-words">
+              <span className="block overflow-hidden">
+                <span className="block text-[#0a0a0a]" style={{ animation: "type-rise 0.85s cubic-bezier(0.16,1,0.3,1) backwards 0.26s" }}>
+                  Every demand decision
+                </span>
+              </span>
+
+              <span className="block overflow-hidden mt-1">
+                <span className="block" style={{ animation: "type-rise 0.85s cubic-bezier(0.16,1,0.3,1) backwards 0.4s" }}>
+                  <span className="text-[#6b7378] font-semibold">starts with a </span>
+                  <span className="headline__accent" data-text="better question.">better question.</span>
+                </span>
+              </span>
+            </h1>
+
+            <p className="mt-4 sm:mt-6 text-sm sm:text-lg lg:text-xl text-[#1a1a1a] max-w-3xl leading-relaxed font-normal">
+              <strong>Know What Demand Is Coming Next.</strong> Forecast demand, understand what's driving it, and identify what needs your attention before it becomes a business problem.
+            </p>
+
+            {/* Action CTAs */}
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6 sm:mt-8">
+              <Link
+                href="/forecast"
+                className="inline-flex items-center justify-center sm:justify-start h-[54px] sm:h-[58px] px-6 sm:px-8 gap-4 bg-[#006cd2] hover:bg-[#0053a3] text-white font-bold text-sm sm:text-base tracking-[-0.015em] transition-colors relative overflow-hidden group shadow-xl w-full sm:w-auto"
+                style={{ animation: "wipe-left 0.7s cubic-bezier(0.16,1,0.3,1) backwards 0.56s" }}
+              >
+                <span className="relative z-10 font-bold">Start Forecasting</span>
+                <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#0053a3] group-hover:bg-white flex items-center justify-center relative z-10 transition-colors">
+                  <svg className="w-4 h-4 text-white group-hover:text-[#006cd2] transition-colors" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7">
+                    <path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" />
+                  </svg>
+                </div>
+              </Link>
+
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center justify-center h-[54px] sm:h-[58px] px-8 bg-white/75 hover:bg-white text-[#0a0a0a] backdrop-blur-[24px] border border-black/10 font-bold text-sm sm:text-base transition-colors shadow-md w-full sm:w-auto text-center"
+                style={{ animation: "wipe-left 0.7s cubic-bezier(0.16,1,0.3,1) backwards 0.66s" }}
+              >
+                Explore Demo Platform
+              </Link>
+            </div>
+          </main>
+
+          {/* Bottom Lede */}
+          <div className="mt-12 sm:mt-16 max-w-[700px] text-white text-sm sm:text-lg font-light leading-relaxed tracking-[-0.01em] bg-black/60 p-5 sm:p-6 border border-white/10 backdrop-blur-md">
+            <p style={{ animation: "type-rise 0.9s cubic-bezier(0.16,1,0.3,1) backwards 0.78s" }}>
+              Meridian continuously analyzes sales trends, product usage, customer behavior and store commercial data to identify expansion opportunities, predict demand risks, and recommend the highest-impact actions for your team.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SUBSEQUENT SECTIONS (SOLID BACKGROUNDS WITHOUT VIDEO)                     */}
+      {/* ========================================================================= */}
 
       {/* 3. PROBLEM SECTION */}
       <section className="relative z-10 bg-[#0a0a0a] text-white py-16 sm:py-24 px-4 sm:px-[clamp(20px,3.52vw,64px)] border-t border-white/10">
@@ -296,7 +307,7 @@ export default function MeridianLandingPage() {
               </p>
             </div>
 
-            <div className="bg-[#121212] border border-white/10 p-6 sm:p-8 space-y-3 relative overflow-hidden">
+            <div id="ai-analyst" className="bg-[#121212] border border-white/10 p-6 sm:p-8 space-y-3 relative overflow-hidden">
               <span className="absolute top-4 right-4 px-2 py-0.5 bg-amber-950 text-amber-300 font-mono text-3xs font-bold border border-amber-800">
                 AI Analyst — Coming Soon
               </span>
