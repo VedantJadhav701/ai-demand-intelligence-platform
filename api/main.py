@@ -41,23 +41,25 @@ app = FastAPI(
 
 # CORS Configuration
 allowed_origins_env = os.getenv("ALLOWED_ORIGINS")
-if allowed_origins_env:
+if allowed_origins_env and allowed_origins_env.strip() != "*":
     allowed_origins = [orig.strip() for orig in allowed_origins_env.split(",") if orig.strip()]
+    logger.info(f"Configured CORS Allowed Origins: {allowed_origins}")
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allowed_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 else:
-    allowed_origins = [
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ]
-
-logger.info(f"Configured CORS Allowed Origins: {allowed_origins}")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    logger.info("Configured CORS Allowed Origins: ['*'] (Wildcard)")
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 @app.middleware("http")
