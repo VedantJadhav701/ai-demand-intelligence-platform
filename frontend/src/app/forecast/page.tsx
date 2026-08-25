@@ -211,7 +211,7 @@ export default function ForecastStudio() {
             </div>
 
             {/* File Upload Box */}
-            <div className="max-w-lg mx-auto border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-xl p-8 transition-colors bg-slate-950/50">
+            <div className="max-w-lg mx-auto border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-xl p-8 transition-colors bg-slate-950/50 space-y-4">
               <input
                 type="file"
                 accept=".csv, .xlsx, .xls"
@@ -226,6 +226,17 @@ export default function ForecastStudio() {
                 </span>
                 <p className="text-xs text-slate-500">Supports .csv, .xlsx files up to 50MB</p>
               </label>
+
+              <div className="pt-2 border-t border-slate-800 flex justify-center">
+                <a
+                  href="/sample_data.csv"
+                  download="sample_data.csv"
+                  className="inline-flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 transition-colors"
+                >
+                  <FileSpreadsheet className="w-3.5 h-3.5" />
+                  Download Sample CSV Template (2,133 Rows)
+                </a>
+              </div>
             </div>
 
             {uploadError && (
