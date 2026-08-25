@@ -8,25 +8,31 @@ import {
   ShieldCheck, 
   ChartSpline, 
   TrendingUp, 
-  Package, 
-  Store, 
   Sparkles, 
   Cpu, 
   Activity, 
   Bot, 
   Settings,
   Activity as LogoIcon,
-  Circle
+  Circle,
+  X
 } from "lucide-react";
+
+interface SidebarProps {
+  mobileOpen?: boolean;
+  onCloseMobile?: () => void;
+}
+
+interface NavItem {
+  href: string;
+  label: string;
+  icon: any;
+  badge?: string;
+}
 
 interface NavGroup {
   group: string;
-  items: {
-    href: string;
-    label: string;
-    icon: any;
-    badge?: string;
-  }[];
+  items: NavItem[];
 }
 
 const navigation: NavGroup[] = [
@@ -77,23 +83,34 @@ const navigation: NavGroup[] = [
   },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ mobileOpen = false, onCloseMobile }: SidebarProps) {
   const pathname = usePathname();
 
-  return (
-    <aside className="w-64 bg-[#101216] border-r border-white/10 flex flex-col justify-between shrink-0 select-none">
+  const sidebarContent = (
+    <div className="h-full flex flex-col justify-between select-none bg-[#101216]">
       <div>
         {/* Brand Header */}
-        <div className="h-16 px-6 flex items-center gap-3 border-b border-white/10">
-          <div className="bg-indigo-600 p-1.5 rounded-lg text-white">
-            <LogoIcon className="w-5 h-5" />
+        <div className="h-16 px-6 flex items-center justify-between border-b border-white/10">
+          <div className="flex items-center gap-3">
+            <div className="bg-indigo-600 p-1.5 rounded-none text-white">
+              <LogoIcon className="w-5 h-5" />
+            </div>
+            <div>
+              <h1 className="font-bold text-sm text-[#F5F7FA] tracking-tight">
+                AI Demand Intelligence
+              </h1>
+              <span className="text-3xs font-mono text-[#9AA2B1]">Enterprise v1.0</span>
+            </div>
           </div>
-          <div>
-            <h1 className="font-bold text-sm text-[#F5F7FA] tracking-tight">
-              AI Demand Intelligence
-            </h1>
-            <span className="text-3xs font-mono text-[#9AA2B1]">Enterprise v1.0</span>
-          </div>
+          {onCloseMobile && (
+            <button
+              onClick={onCloseMobile}
+              className="lg:hidden p-1.5 text-[#9AA2B1] hover:text-white"
+              aria-label="Close menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
         </div>
 
         {/* Nav Items */}
@@ -110,7 +127,8 @@ export default function Sidebar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                    onClick={onCloseMobile}
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-none text-xs font-medium transition-all ${
                       isActive
                         ? "bg-indigo-600/20 text-[#F5F7FA] border border-indigo-500/40 font-semibold"
                         : "text-[#9AA2B1] hover:bg-[#15181D] hover:text-[#F5F7FA]"
@@ -121,7 +139,7 @@ export default function Sidebar() {
                       <span>{item.label}</span>
                     </div>
                     {item.badge && (
-                      <span className="text-3xs px-1.5 py-0.5 rounded bg-amber-950/60 text-amber-300 border border-amber-800/40">
+                      <span className="text-3xs px-1.5 py-0.5 rounded-none bg-amber-950/60 text-amber-300 border border-amber-800/40">
                         {item.badge}
                       </span>
                     )}
@@ -143,6 +161,28 @@ export default function Sidebar() {
           <span className="font-mono text-emerald-400 font-semibold">● Production</span>
         </div>
       </div>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Persistent Sidebar */}
+      <aside className="hidden lg:flex w-64 border-r border-white/10 shrink-0 h-screen sticky top-0">
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile Backdrop & Slide-Over Drawer */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex">
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={onCloseMobile}
+          />
+          <div className="relative w-72 max-w-[80vw] bg-[#101216] h-full shadow-2xl z-10">
+            {sidebarContent}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

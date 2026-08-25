@@ -2,10 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Database, ShieldCheck, AlertCircle, Circle } from "lucide-react";
+import { Database, Circle, Menu } from "lucide-react";
 import { fetchHealth } from "@/lib/api";
 
-export default function Topbar() {
+interface TopbarProps {
+  onOpenMobileSidebar?: () => void;
+}
+
+export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
   const pathname = usePathname();
   const [healthStatus, setHealthStatus] = useState<"healthy" | "degraded" | "error">("healthy");
 
@@ -36,24 +40,36 @@ export default function Topbar() {
   };
 
   return (
-    <header className="h-16 bg-[#101216] border-b border-white/10 px-6 flex items-center justify-between select-none">
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-xs">
-        <span className="text-[#626A78]">AI Demand Intelligence</span>
-        <span className="text-[#626A78]">/</span>
-        <span className="font-semibold text-[#F5F7FA]">{getPageTitle(pathname)}</span>
+    <header className="h-16 bg-[#101216] border-b border-white/10 px-4 sm:px-6 flex items-center justify-between select-none shrink-0 sticky top-0 z-30">
+      {/* Mobile Menu Toggle & Breadcrumb */}
+      <div className="flex items-center gap-3 text-xs">
+        <button
+          onClick={onOpenMobileSidebar}
+          className="lg:hidden p-2 text-[#9AA2B1] hover:text-white bg-[#15181D] border border-white/10 rounded-none"
+          aria-label="Toggle navigation menu"
+        >
+          <Menu className="w-4 h-4" />
+        </button>
+
+        <div className="flex items-center gap-1.5 text-2xs sm:text-xs">
+          <span className="hidden sm:inline text-[#626A78]">AI Demand Intelligence</span>
+          <span className="hidden sm:inline text-[#626A78]">/</span>
+          <span className="font-bold text-[#F5F7FA] truncate max-w-[160px] sm:max-w-none">
+            {getPageTitle(pathname)}
+          </span>
+        </div>
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-4 text-xs">
+      <div className="flex items-center gap-3 text-xs">
         {/* Active Dataset Pill */}
-        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#15181D] border border-white/10 text-[#9AA2B1]">
+        <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-[#15181D] border border-white/10 text-[#9AA2B1] text-2xs">
           <Database className="w-3.5 h-3.5 text-indigo-400" />
           <span>Active: <strong className="text-[#F5F7FA]">sample_data.csv</strong></span>
         </div>
 
         {/* Backend Status */}
-        <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${
+        <div className={`flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 text-2xs sm:text-xs font-semibold border ${
           healthStatus === "healthy"
             ? "bg-emerald-950/40 border-emerald-800/60 text-emerald-400"
             : healthStatus === "degraded"
