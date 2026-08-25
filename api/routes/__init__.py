@@ -8,6 +8,7 @@ from api.routes.model import router as model_router
 from api.routes.metrics import router as metrics_router
 from api.routes.explain import router as explain_router
 from api.routes.drift import drift_router
+from api.routes.data import data_router
 
 __all__ = [
     "health_router",
@@ -16,4 +17,5 @@ __all__ = [
     "metrics_router",
     "explain_router",
     "drift_router",
+    "data_router",
 ]

@@ -20,6 +20,7 @@ from api.routes import (
     metrics_router,
     explain_router,
     drift_router,
+    data_router,
 )
 from src.utils.config import load_config
 from src.utils.logger import setup_logger
@@ -82,6 +83,7 @@ app.include_router(model_router)
 app.include_router(metrics_router)
 app.include_router(explain_router)
 app.include_router(drift_router)
+app.include_router(data_router)
 
 
 @app.exception_handler(Exception)

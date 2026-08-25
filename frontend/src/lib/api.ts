@@ -105,6 +105,19 @@ export interface DriftReportResponseData {
   timestamp: string;
 }
 
+export interface DatasetSummaryData {
+  total_rows: number;
+  total_stores: number;
+  total_products: number;
+  date_range: string;
+  missing_pct: number;
+  data_quality: string;
+  stores: string[];
+  products: string[];
+  is_valid: boolean;
+  warnings: string[];
+}
+
 export async function fetchHealth(): Promise<{ status: string; timestamp: string }> {
   const res = await fetch(`${API_BASE_URL}/health`, { cache: "no-store" });
   if (!res.ok) throw new Error("Health check failed");
@@ -147,4 +160,28 @@ export async function fetchDriftReport(): Promise<DriftReportResponseData> {
   const res = await fetch(`${API_BASE_URL}/drift`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch drift report");
   return res.json();
+}
+
+export async function uploadSalesDataFile(file: File): Promise<DatasetSummaryData> {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await fetch(`${API_BASE_URL}/data/upload`, {
+    method: "POST",
+    body: formData,
+  });
+  if (!res.ok) throw new Error("Failed to upload dataset file");
+  return res.json();
+}
+
+export async function fetchDatasetSummary(): Promise<DatasetSummaryData> {
+  const res = await fetch(`${API_BASE_URL}/data/summary`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch dataset summary");
+  return res.json();
+}
+
+export async function fetchDerivedFeatures(storeId: string, productId: string): Promise<Record<string, any>> {
+  const res = await fetch(`${API_BASE_URL}/data/lookup-features?store_id=${encodeURIComponent(storeId)}&product_id=${encodeURIComponent(productId)}`, { cache: "no-store" });
+  if (!res.ok) return {};
+  const data = await res.json();
+  return data.derived_features || {};
 }
