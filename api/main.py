@@ -39,27 +39,31 @@ app = FastAPI(
     openapi_url="/openapi.json",
 )
 
-# CORS Configuration
-allowed_origins_env = os.getenv("ALLOWED_ORIGINS")
-if allowed_origins_env and allowed_origins_env.strip() != "*":
-    allowed_origins = [orig.strip() for orig in allowed_origins_env.split(",") if orig.strip()]
-    logger.info(f"Configured CORS Allowed Origins: {allowed_origins}")
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=allowed_origins,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-else:
-    logger.info("Configured CORS Allowed Origins: ['*'] (Wildcard)")
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=False,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+# CORS Configuration: Support Vercel deployments, localhost, and custom ALLOWED_ORIGINS
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "")
+parsed_origins = []
+if allowed_origins_env:
+    clean_env = allowed_origins_env.replace("[", "").replace("]", "").replace('"', "").replace("'", "")
+    parsed_origins = [o.strip() for o in clean_env.split(",") if o.strip()]
+
+default_origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://ai-demand-intelligence-mu.vercel.app",
+    "https://demand-intelligence-app.vercel.app",
+]
+
+combined_origins = list(set(parsed_origins + default_origins))
+logger.info(f"Configured CORS Allowed Origins: {combined_origins}")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=combined_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app|http://localhost:\d+|http://127\.0\.0\.1:\d+",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.middleware("http")
