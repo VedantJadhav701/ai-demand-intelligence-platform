@@ -22,13 +22,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --default-timeout=1000 --retries 10 --no-cache-dir -r requirements.txt
 
-# Copy application source code
+# Copy application source code & MLflow model registry artifacts
 COPY pyproject.toml .
 COPY configs/ ./configs/
 COPY data/ ./data/
 COPY src/ ./src/
 COPY api/ ./api/
 COPY pipelines/ ./pipelines/
+COPY mlruns/ ./mlruns/
+COPY mlartifacts/ ./mlartifacts/
 
 # Expose Render PORT
 EXPOSE ${PORT}
