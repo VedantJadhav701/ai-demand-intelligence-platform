@@ -40,6 +40,12 @@ class ModelService:
 
         # Enable filesystem store if file URI is used
         os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
+
+        if self.tracking_uri.startswith("file:"):
+            raw_path = self.tracking_uri.replace("file:", "").lstrip("/")
+            resolved_path = Path(raw_path if raw_path else ".").resolve().as_posix()
+            self.tracking_uri = f"file:///{resolved_path.lstrip('/')}"
+
         mlflow.set_tracking_uri(self.tracking_uri)
 
         self._model_cache: Dict[str, Any] = {}
