@@ -139,3 +139,46 @@ class ReadinessResponse(BaseModel):
     registry_prefix: str
     models_status: Dict[str, str]
     timestamp: str
+
+
+class FeatureDriftSchema(BaseModel):
+    feature_name: str
+    psi: float
+    ks_statistic: Optional[float] = None
+    p_value: Optional[float] = None
+    status: str
+    message: str
+
+
+class PredictionDriftSchema(BaseModel):
+    mean_reference: float
+    mean_current: float
+    variance_reference: float
+    variance_current: float
+    psi: float
+    ks_statistic: float
+    p_value: float
+    status: str
+    message: str
+
+
+class ResidualAnalysisSchema(BaseModel):
+    sample_count: int
+    mae: float
+    rmse: float
+    wape: float
+    mean_residual: float
+    forecast_bias: float
+    tracking_signal: float
+    status: str
+
+
+class DriftReportResponse(BaseModel):
+    status: str = "success"
+    overall_status: str
+    summary_message: str
+    feature_drift: Dict[str, FeatureDriftSchema]
+    prediction_drift: Optional[PredictionDriftSchema] = None
+    residual_analysis: Optional[ResidualAnalysisSchema] = None
+    timestamp: str
+
