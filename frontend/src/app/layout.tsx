@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
+import Sidebar from "@/components/layout/Sidebar";
+import Topbar from "@/components/layout/Topbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Demand Intelligence & Forecasting Platform",
-  description: "Enterprise multi-horizon demand forecasting, MLflow model registry, SHAP explainability, and drift monitoring.",
+  title: "AI Demand Intelligence — Explainable Demand Forecasting",
+  description: "Forecast demand, understand prediction drivers, and turn sales data into actionable business insights.",
 };
 
 export default function RootLayout({
@@ -25,14 +26,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-100 font-sans">
-        <Navigation />
-        <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
-          {children}
-        </main>
-        <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs py-4 text-center">
-          AI Demand Intelligence Platform &copy; 2026 • Powered by FastAPI & CatBoost Production Models
-        </footer>
+      <body className="h-full flex bg-[#08090B] text-[#F5F7FA] font-sans overflow-hidden">
+        {/* Sidebar */}
+        <Sidebar />
+
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+          <Topbar />
+          <main className="flex-1 overflow-y-auto p-6 lg:p-8 max-w-[1440px] w-full mx-auto">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
