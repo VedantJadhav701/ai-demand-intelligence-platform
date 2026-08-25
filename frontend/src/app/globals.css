@@ -47,6 +47,35 @@ h1 em, .serif-italic {
   color: #9a9a9a;
 }
 
+/* Animated Card Motion Classes */
+.card-motion {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.card-motion:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.25);
+}
+
+.card-motion-emerald:hover {
+  transform: translateY(-5px);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.25);
+}
+
+.card-motion-amber:hover {
+  transform: translateY(-5px);
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.25);
+}
+
+.card-motion-rose:hover {
+  transform: translateY(-5px);
+  border-color: rgba(244, 63, 94, 0.5);
+  box-shadow: 0 12px 30px -10px rgba(244, 63, 94, 0.25);
+}
+
 /* Liquid-metal Nav Pills */
 .nav-pill {
   height: var(--nav-h);
