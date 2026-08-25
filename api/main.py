@@ -6,6 +6,9 @@ Initializes FastAPI app, configures CORS, registers routers, and sets up middlew
 import os
 import time
 from typing import List
+
+# Opt-out of MLflow FileStore deprecation exception for file-based model registry
+os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
