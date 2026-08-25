@@ -1,0 +1,12 @@
+experiment_name: "demand_intelligence_mvp"
+tracking_enabled: true
+log_level: "INFO"
+log_dir: "logs"
+output_dir: "data/outputs"
+
+mlflow:
+  tracking_uri: "file:./mlruns"
+  experiment_name: "demand-forecasting"
+  registry_name_prefix: "demand"
+  artifact_location: "./mlartifacts"
+  feature_version: "phase4_v1"

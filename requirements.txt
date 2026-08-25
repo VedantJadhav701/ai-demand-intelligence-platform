@@ -1,0 +1,29 @@
+# Core Data & Config Dependencies
+pandas>=2.0.0
+numpy>=1.24.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+pyyaml>=6.0
+python-dotenv>=1.0.0
+pyarrow>=12.0.0
+
+# Machine Learning & Explainability
+scikit-learn>=1.2.0
+xgboost>=1.7.0
+lightgbm>=3.3.0
+catboost>=1.2.0
+optuna>=3.0.0
+shap>=0.42.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# MLOps & Experiment Tracking
+mlflow>=2.10.0
+
+# FastAPI Serving
+fastapi>=0.100.0
+uvicorn>=0.22.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0

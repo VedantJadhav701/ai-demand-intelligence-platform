@@ -1,0 +1,16 @@
+creation_timestamp: 1787425507812
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1787425507812
+model_id: m-162d65a4970f4b38920fcea4a191fc0c
+name: demand-catboost-h14
+run_id: 266d218821764b899c88164b37076f7c
+run_link: null
+source: models:/m-162d65a4970f4b38920fcea4a191fc0c
+status: READY
+status_message: null
+storage_location: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts/models/m-162d65a4970f4b38920fcea4a191fc0c/artifacts
+user_id: null
+version: 1
+workspace: default

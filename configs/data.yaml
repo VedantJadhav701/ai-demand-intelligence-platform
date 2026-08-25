@@ -1,0 +1,28 @@
+raw_data_path: "data/raw/sample_sales_data.csv"
+
+required_columns:
+  - "date"
+  - "store_id"
+  - "product_id"
+  - "units_sold"
+
+optional_columns:
+  - "revenue"
+  - "price"
+  - "discount"
+  - "promotion"
+  - "holiday"
+  - "store_type"
+  - "product_category"
+  - "inventory"
+  - "region"
+
+date_format: "%Y-%m-%d"
+
+validation_rules:
+  allow_negative_sales: false
+  min_price: 0.0
+  min_discount: 0.0
+  max_discount: 1.0
+  check_date_gaps: true
+  max_missing_pct: 0.20

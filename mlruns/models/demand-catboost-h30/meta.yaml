@@ -1,0 +1,11 @@
+aliases:
+  candidate: '2'
+  production: '2'
+  staging: '2'
+creation_timestamp: 1787425524527
+deployment_job_id: null
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1787426034672
+name: demand-catboost-h30
+workspace: default

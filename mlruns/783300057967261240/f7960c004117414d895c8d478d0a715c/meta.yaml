@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts/f7960c004117414d895c8d478d0a715c/artifacts
+end_time: 1787425525917
+entry_point_name: ''
+experiment_id: '783300057967261240'
+lifecycle_stage: active
+run_id: f7960c004117414d895c8d478d0a715c
+run_name: catboost_h30_phase4_optuna
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1787425511444
+status: 3
+tags: []
+user_id: HP

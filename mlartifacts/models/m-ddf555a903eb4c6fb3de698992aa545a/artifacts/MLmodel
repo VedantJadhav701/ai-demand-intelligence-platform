@@ -1,0 +1,22 @@
+artifact_path: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts/models/m-ddf555a903eb4c6fb3de698992aa545a/artifacts
+flavors:
+  catboost:
+    catboost_version: 1.2.10
+    code: null
+    data: model.cb
+    model_type: CatBoostRegressor
+    save_format: cbm
+  python_function:
+    data: model.cb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.catboost
+    python_version: 3.11.15
+mlflow_version: 3.15.1
+model_id: m-ddf555a903eb4c6fb3de698992aa545a
+model_size_bytes: 15208
+model_uuid: m-ddf555a903eb4c6fb3de698992aa545a
+prompts: null
+run_id: 22c676d8167149828c7be295d57c1fc4
+utc_time_created: '2026-08-22 18:57:19.780577'

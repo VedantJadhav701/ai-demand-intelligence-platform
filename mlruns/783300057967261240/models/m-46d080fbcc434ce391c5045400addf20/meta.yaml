@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts/models/m-46d080fbcc434ce391c5045400addf20/artifacts
+creation_timestamp: 1787425985372
+experiment_id: '783300057967261240'
+last_updated_timestamp: 1787425996768
+model_id: m-46d080fbcc434ce391c5045400addf20
+model_type: null
+name: model
+source_run_id: 45585728da4946598cd1eebb71ab4463
+status: 2
+status_message: null

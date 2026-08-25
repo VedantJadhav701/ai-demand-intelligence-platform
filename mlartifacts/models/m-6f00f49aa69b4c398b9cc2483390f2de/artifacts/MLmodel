@@ -1,0 +1,19 @@
+artifact_path: file:///C:/Users/HP/projects/ai-demand-intelligence-platform/mlartifacts/models/m-6f00f49aa69b4c398b9cc2483390f2de/artifacts
+flavors:
+  python_function:
+    cloudpickle_version: 3.1.2
+    code: null
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.11.15
+    streamable: false
+mlflow_version: 3.15.1
+model_id: m-6f00f49aa69b4c398b9cc2483390f2de
+model_size_bytes: 146098
+model_uuid: m-6f00f49aa69b4c398b9cc2483390f2de
+prompts: null
+run_id: 448fe12c95c54ec68ffd67a77fd0cca9
+utc_time_created: '2026-08-22 19:04:41.677496'
