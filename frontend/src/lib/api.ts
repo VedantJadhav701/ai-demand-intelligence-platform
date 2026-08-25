@@ -119,9 +119,25 @@ export interface DatasetSummaryData {
 }
 
 export async function fetchHealth(): Promise<{ status: string; timestamp: string }> {
-  const res = await fetch(`${API_BASE_URL}/health`, { cache: "no-store" });
-  if (!res.ok) throw new Error("Health check failed");
-  return res.json();
+  try {
+    // Primary: Call /ready to bypass adblockers blocking /health
+    const res = await fetch(`${API_BASE_URL}/ready`, { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      return { status: data.status || "healthy", timestamp: new Date().toISOString() };
+    }
+  } catch (e) {
+    // Adblocker or Network Fallback to /health
+  }
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/health`, { cache: "no-store" });
+    if (res.ok) return res.json();
+  } catch (e) {
+    // If both blocked or failed
+  }
+
+  throw new Error("API status check failed");
 }
 
 export async function fetchReadiness(): Promise<any> {
